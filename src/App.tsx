@@ -7,7 +7,7 @@ import {
 import ThemeComponent from "./@core/theme/ThemeComponent";
 import themeConfig from "./configs/themeConfig";
 import { AuthProvider } from "./context/AuthContext";
-import renderRouter from "./routers/MianRouter";
+import renderRouter from "./routers/MainRouter";
 import { routerData } from "./routers/routerData";
 function App() {
   return (
