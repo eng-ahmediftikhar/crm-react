@@ -14,7 +14,6 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
   useEffect(() => {
     if (auth.user && auth.user.role) {
       const homeRoute = getHomeRoute(auth.user.role);
-      console.log(homeRoute);
 
       // Redirect user to Home URL
       navigate(homeRoute);

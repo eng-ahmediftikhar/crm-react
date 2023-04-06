@@ -16,7 +16,7 @@ import {
   UserDataType,
 } from "./types";
 import { useLocation, useNavigate } from "react-router-dom";
-import axiosAdaptor from "src/@fake-db/axios";
+import axios from "axios";
 
 // ** Defaults
 const defaultProvider: AuthValuesType = {
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }: Props) => {
       )!;
       if (storedToken) {
         setLoading(true);
-        await axiosAdaptor
+        await axios
           .get(authConfig.meEndpoint, {
             headers: {
               Authorization: storedToken,
@@ -75,13 +75,6 @@ const AuthProvider = ({ children }: Props) => {
             }
           });
       } else {
-        if (
-          !location.pathname.includes("login") &&
-          !location.pathname.includes("register") &&
-          !location.pathname.includes("forgot-password")
-        )
-          navigate("/login");
-
         setLoading(false);
       }
     };
@@ -94,7 +87,7 @@ const AuthProvider = ({ children }: Props) => {
     params: LoginParams,
     errorCallback?: ErrCallbackType
   ) => {
-    axiosAdaptor
+    axios
       .post(authConfig.loginEndpoint, params)
       .then(async (response) => {
         params.rememberMe
@@ -134,7 +127,7 @@ const AuthProvider = ({ children }: Props) => {
     params: RegisterParams,
     errorCallback?: ErrCallbackType
   ) => {
-    axiosAdaptor
+    axios
       .post(authConfig.registerEndpoint, params)
       .then((res) => {
         if (res.data.error) {
